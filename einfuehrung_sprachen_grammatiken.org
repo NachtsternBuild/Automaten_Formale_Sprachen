@@ -1,0 +1,134 @@
+* Einführung: Sprachen und Grammatiken
+:PROPERTIES:
+:CUSTOM_ID: einführung-sprachen-und-grammatiken
+:END:
+
+Sprachen: Bezeichnungen, Regeln
+
+- Alphabet \(\Sigma\): Menge von Symbolen (Buchstaben)
+
+- \(\Sigma^*\):
+
+  - Menge aller Worte, die sich durch Hintereinanderschreiben
+    ("Konkatenation") von Buchstaben aus \(\Sigma\) bilden lassen
+
+  - Beispiel:
+    \(\Sigma=\left\{a,b\right\}, \Sigma^*=\left\{\varepsilon, a, b, aa, \ldots\right\}, \varepsilon\):
+    "leeres Wort", \(\varepsilon a=a \varepsilon = a\)
+
+  - Länge eines Wortes
+    \(|w|: |a|=1, |\varepsilon|=0, |w_1w_2|=|w_1|+|w_2|\)
+
+- Sprache \(L\): Teilmenge von \(\Sigma^*\)
+
+  - Es gelten die Mengen-Verknüpfungen
+    \(L_1 \cup L_2, L_1 \cap L_2, L_1 \setminus L_2\)
+
+  - Dazu die Konkatenation
+    \(L_1L_2=\left\{xy \mid x \in L_1 \land y \in L_2\right\}\)
+
+  - Regeln:\\
+    \(L^0=\left\{\varepsilon\right\}, L^1=L, L^{n+1}=LL^n, L^*=\bigcup_{n\geq0}L^n, L^+=\bigcup_{n\geq1}L^n\)
+
+Grammatiken
+
+- generierende Grammatik \(G\): Sprache durch Regeln erzeugen
+
+- Definition: \(G=(V, \Sigma, P, S)\) mit\\
+  \(V\): endliche Menge von Variablen\\
+  \(\Sigma\): Terminalalphabet, \(V \cap \Sigma = \varnothing\)\\
+  \(P\): Menge von Regeln (Produktionen) der Art
+  \(u_1 \rightarrow u_2\), mit
+  \(u_1, u_2 \in \left(V \cup \Sigma\right)^*\)\\
+  \(S\): Startvariable, \(S \in V\)
+
+- Ableitung \(S \underset{G}{\Rightarrow}^* w\)
+
+  - Ableitungsschritt
+    \(u \underset{G}{\Rightarrow} v: u=xyz, v=xy'z, y\rightarrow y' \in P\)
+
+  - \(\underset{G}{\Rightarrow}^*\): reflexive und transitive Hülle der
+    Relation \(\underset{G}{\Rightarrow}\) (endliche Folge)
+
+- durch \(G\) erzeugte Sprache:
+  \(L(G)=\left\{w \in \Sigma^* \mid S \underset{G}{\Rightarrow}^* w\right\}\)
+
+Chomsky-Hierarchie
+
+- Hierarchie von Grammatiken
+
+  - Startwort besteht aus genau einer Variablen \(S\),\\
+    es gibt keine Regeln der Art \(\varepsilon \rightarrow u\) (Wörter
+    dürfen nicht aus dem "Nichts" entstehen)
+
+  - (kontextsensitiv) Typ 0, und für alle Regeln \(w_1 \rightarrow w_2\)
+    gilt: \(|w_1| \leq |w_2|\);\\
+    \(S \rightarrow \varepsilon\) als Sonderregel erlaubt
+
+  - (kontextfrei) Typ 1, und für alle Regeln \(w_1 \rightarrow w_2\)
+    gilt: \(w_1\) ist eine einzelne Variable
+
+  - (regulär) Typ 2, und für alle Regeln \(w_1 \rightarrow w_2\) gilt:
+    \(w_2 \in \Sigma \cup \Sigma V\)
+
+- _\(\varepsilon\)-Sonderregel_: \(\varepsilon\) darf nur aus
+  Startsymbol \(S\) abgeleitet werden;\\
+  \(S\) darf dann auf keiner rechten Seite einer Regel vorkommen
+
+Beispiel Typ-1 Grammatik \[\begin{aligned}
+        L&=\left\{a^nb^nc^n \mid n \geq 1\right\}\\
+        G&=\left(\left\{S,B,C\right\},\left\{a,b,c\right\},P,S\right)\\
+        P&=\{S \rightarrow aSBC \mid aBC,\\
+                 &\qquad CB \rightarrow BC,\\
+                 &\qquad aB \rightarrow ab,\\
+                 &\qquad bB \rightarrow bb,\\
+                 &\qquad bC \rightarrow bc,\\
+                 &\qquad cC \rightarrow cc\}\\
+    
+\end{aligned}\]
+
+Ableitungsbaum
+
+- Darstellung der Ableitungsschritte als Baum
+
+- Links- bzw. Rechtsableitungen
+
+- Mehrdeutige Grammatiken
+
+  - zu ein und demselben Terminalwort existieren verschiedene (Links-)
+    Ableitungen
+
+  - Eine Sprache \(L\) heißt /inhärent mehrdeutig/, falls keine
+    eindeutige Grammatik für \(L\) existiert
+
+- Berechnung von Ausdrücken:
+
+  - Operanden, die im Ableitungsbaum tiefer liegen, haben bei der
+    Ausführung höhere Priorität
+
+  - Compiler erzeugt Ableitungsbaum bottom-up durch Ableitung des
+    Startsymbols aus dem Terminalwort
+
+  - benutzt dazu /reduktive/ Grammatik: erzeugt aus der /generativen/
+    Grammatik durch Transponieren der Regeln
+
+Avram Noam Chomsky ()
+
+- US-amerikanischer Linguist, Philosoph, Kognitionswissenschaftler
+
+- Begründer der generativen Grammatik, Chomsky-Hierarchie
+
+- emeritierter Professor für Linguistik am MIT
+
+- politisch sehr aktiv
+
+- Schriften:
+
+  - /Syntactic Structure/ (1957)
+
+  - /The Logical Structure of Linguistic Theory/\\
+    (veröffentlicht 1975)
+
+[[file:images/Noam_Chomsky_portrait_2017_retouched.jpg]][fn:1]
+
+[fn:1] [[https://commons.wikimedia.org/wiki/File:Noam_Chomsky_portrait_2017_retouched.jpg]]
