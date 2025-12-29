@@ -1,0 +1,95 @@
+#+title: Übungsblatt 7
+
+#+begin_center
+*Übung 7*\\
+*Klausurvorbereitung - Teil 2*\\
+
+#+end_center
+
+Gewünscht waren folgende Themen:
+
+- Minimalautomat
+
+- CYK
+
+- DPDA
+
+- berechnende TM
+
+- Resolution (keine Kontradiktion)
+
+- Keine Pumping-Lemmas?
+
+*Aufgabe: DFA minimieren*
+
+Minimieren Sie den folgenden DFA:\\
+
+*Aufgabe: CYK-Algorithmus*
+
+Gegeben sei die Grammatik \(G=(\{S, A, B, C, D\}, \{a, b, c\}, S, P)\)
+mit \[\begin{aligned}
+        P:S\rightarrow & AB \mid BC\\
+        A\rightarrow & a \mid BB \mid BS\\
+        B\rightarrow & b \mid CD \mid DA\\
+        C\rightarrow & c \mid AS \mid BD\\
+        D\rightarrow & a \mid CB \mid AA
+    
+\end{aligned}\] Prüfen Sie mit dem CYK-Algorithmus, ob das Wort
+\(bacaac\) in \(L(G)\) enthalten ist.\\
+CYK-Demo: [[https://www.cip.ifi.lmu.de/~lindebar/]]
+
+#+begin_example
+        S -> AB | BC
+        A -> a | BB | BS
+        B -> b | CD | DA
+        C -> c | AS | BD
+        D -> a | CB | AA
+#+end_example
+
+*Aufgabe: Resolution*
+
+Prüfen Sie mittels Resolution, ob die folgende Formel eine Tautologie
+ist:
+
+\[(A\land \neg B \land C) \lor E \lor (\neg A \land D \land \neg E) \lor (B \land C \land \neg D) \lor C \lor \neg B\]
+
+*Aufgabe: PDA*
+
+Die folgende Sprache über dem Alphabet \(\Sigma=\{a, b, c\}\) ist
+deterministisch kontextfrei:
+\[L = \left\{w_1w_2 \in \Sigma^* \mid w_1 \in \{a\}^* \land w_2 \in \{b, c\}^* \land |w_1|=|w_2|\right\}\]
+
+1) Konstruieren Sie einen deterministischen Kellerautomaten, der diese
+   Sprache akzeptiert.
+
+2) Ist die Akzeptanz mittels leerem Keller möglich? Begründen Sie Ihre
+   Antwort.
+
+*Aufgabe: Turingmaschine*
+
+Konstruieren Sie eine Turingmaschine, die auf einem Eingabewort aus dem
+Alphabet \(\Sigma = \{|, -\}\) eine Subtraktion \(x-y\) durchführt.
+Dabei stehen Minuend \(x\) und Subtrahend \(y\) in Bierdeckelnotation
+hintereinander auf dem Band, getrennt vom Subtraktionsoperator \(-\).
+Nach Abarbeitung des Programms soll nur noch das Ergebnis in
+Bierdeckelnotation auf dem Band stehen.
+
+Gehen Sie davon aus, dass das Ergebnis der Operation immer größer Null
+ist, d.h. der Minuend \(x\) ist bei jeder Eingabe größer als der
+Subtrahend \(y\).
+
+/Beispiel:/ Das Eingabewort für die Operation \(4-2\) ist auf dem Band
+notiert als: \[\#||||-||\#\] Nach Bearbeitung des Eingabewortes steht
+auf dem Band \[\#||\#\] und die Turingmaschine befindet sich in einem
+Endzustand.
+
+*Aufgabe: Pumping-Lemma für reguläre Sprachen*
+
+Zeigen Sie, dass
+\[L=\{a^ib^jv \mid v \in \{a\}^* \land |v| \textrm{ ist ungerade } \land j=2i\}\]
+über dem Alphabet \(\Sigma=\{a,b\}\) nicht regulär ist.
+
+*Aufgabe: Pumping-Lemma für kontextfreie Sprachen*
+
+Zeigen Sie, dass \[L=\{a^ib^jc^k \mid i<j<k\}\] über dem Alphabet
+\(\Sigma=\{a,b,c\}\) nicht kontextfrei ist.
