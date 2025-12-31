@@ -1,12 +1,32 @@
+#+LATEX_COMPILER: xelatex
+#+LATEX_CLASS: scrartcl
+#+LATEX_CLASS_OPTIONS: [a4paper,14pt,ngerman]
+#+OPTIONS: ':t toc:nil title:nil
+
+#+LANGUAGE: de
+
+#+LATEX_HEADER: \usepackage{polyglossia}
+#+LATEX_HEADER: \setdefaultlanguage{german}
+#+LATEX_HEADER: \PolyglossiaSetup{german}{shorthands=on}
+#+LATEX_HEADER: \AtBeginDocument{\let\babelprovide\relax}
+#+LATEX_HEADER: \AtBeginDocument{\let\shorthandon\relax}
+#+LATEX_HEADER: \AtBeginDocument{\let\shorthandoff\relax}
+#+LATEX_HEADER: \setmainfont{Gentium Book Basic}
+#+LATEX_HEADER: \setsansfont{Latin Modern Sans}
+#+LATEX_HEADER: \setmonofont{Latin Modern Mono}
+#+LATEX_HEADER: \usepackage{fancyhdr}
+#+LATEX_HEADER: \usepackage{graphicx}
+#+LATEX_HEADER: \usepackage{amsmath,amssymb}
+#+LATEX_HEADER: \usepackage{xcolor}
+#+LATEX_HEADER: \usepackage{xurl}
+#+LATEX_HEADER: \usepackage{listings}
+#+LATEX_HEADER: \usepackage{setspace}
+#+LATEX_HEADER: \setstretch{1.3}
 #+title: Übungsblatt 1
 
-#+begin_center
-*Übung 1*\\
-*Logik*\\
-
-#+end_center
-
-*Aufgabe 1*
+* *Übung 1*
+** *Logik*
+*** *Aufgabe 1*
 
 Welche der folgenden aussagenlogischen Ausdrücke sind Tautologien?
 
@@ -16,7 +36,7 @@ Welche der folgenden aussagenlogischen Ausdrücke sind Tautologien?
 
 3) \(((a \rightarrow b) \land (b \rightarrow c)) \rightarrow (a \rightarrow c)\)
 
-*Aufgabe 2*
+*** *Aufgabe 2*
 
 Gegeben sei die Wahrheitstafel für eine Funktion \(F\).
 
@@ -36,7 +56,7 @@ Gegeben sei die Wahrheitstafel für eine Funktion \(F\).
 
 2. Minimieren Sie DNF und KNF unter Verwendung eines KV-Diagramms.
 
-*Aufgabe 3*
+*** *Aufgabe 3*
 
 Auszug aus dem Plädoyer einer Anwältin:
 
@@ -56,12 +76,12 @@ Auszug aus dem Plädoyer einer Anwältin:
 Wenden Sie logisches Schließen an, um zu zeigen, ob der Mandant schuldig
 war.
 
-*Aufgabe 4*
+*** *Aufgabe 4*
 
 Prüfen Sie, ob aus den Prämissen \(A \rightarrow B\) und \(B\) die
 Gültigkeit von \(A\) folgt.
 
-*Aufgabe 5*
+*** *Aufgabe 5*
 
 Untersuchen Sie die Korrektheit des folgenden Schlusses:
 
@@ -74,13 +94,13 @@ Untersuchen Sie die Korrektheit des folgenden Schlusses:
 3. Also: Wenn John zu viel Fleisch gegessen hat und schwimmen war, dann
    wird er eine Magenverstimmung erleiden.
 
-*Aufgabe 6*
+*** *Aufgabe 6*
 
 Zeigen Sie mittels Resolution, dass
 \[F=(\neg A \land \neg B \land C) \lor (\neg A \land \neg C) \lor (B \land C) \lor A\]
 eine Tautologie ist.
 
-*Aufgabe 7*
+*** *Aufgabe 7*
 
 Prüfen Sie die Erfüllbarkeit der folgenden Klauselmenge:
 \[S = \left\{\{A, \neg B, C\}, \{B, C\}, \{\neg A, C\}, \{B, \neg C\}, \{\neg C\}\right\}\]

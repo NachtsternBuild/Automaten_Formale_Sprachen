@@ -1,10 +1,34 @@
+#+LATEX_COMPILER: xelatex
+#+LATEX_CLASS: scrartcl
+#+LATEX_CLASS_OPTIONS: [a4paper,14pt,ngerman]
+#+OPTIONS: ':t toc:nil title:nil
+
+#+LANGUAGE: de
+
+#+LATEX_HEADER: \usepackage{polyglossia}
+#+LATEX_HEADER: \setdefaultlanguage{german}
+#+LATEX_HEADER: \PolyglossiaSetup{german}{shorthands=on}
+#+LATEX_HEADER: \AtBeginDocument{\let\babelprovide\relax}
+#+LATEX_HEADER: \AtBeginDocument{\let\shorthandon\relax}
+#+LATEX_HEADER: \AtBeginDocument{\let\shorthandoff\relax}
+#+LATEX_HEADER: \setmainfont{Gentium Book Basic}
+#+LATEX_HEADER: \setsansfont{Latin Modern Sans}
+#+LATEX_HEADER: \setmonofont{Latin Modern Mono}
+#+LATEX_HEADER: \usepackage{fancyhdr}
+#+LATEX_HEADER: \usepackage{graphicx}
+#+LATEX_HEADER: \usepackage{amsmath,amssymb}
+#+LATEX_HEADER: \usepackage{xcolor}
+#+LATEX_HEADER: \usepackage{xurl}
+#+LATEX_HEADER: \usepackage{listings}
+#+LATEX_HEADER: \usepackage{setspace}
+#+LATEX_HEADER: \setstretch{1.3}
+#+LATEX_HEADER: \usepackage{circuitikz}
+#+LATEX_HEADER: \usepackage{tikz}
+#+LATEX_HEADER: \usetikzlibrary{automata, positioning, arrows}
 #+title: Übungsblatt 7
 
-#+begin_center
-*Übung 7*\\
-*Klausurvorbereitung - Teil 2*\\
-
-#+end_center
+* *Übung 7*
+** *Klausurvorbereitung - Teil 2*
 
 Gewünscht waren folgende Themen:
 
@@ -20,22 +44,43 @@ Gewünscht waren folgende Themen:
 
 - Keine Pumping-Lemmas?
 
-*Aufgabe: DFA minimieren*
+*** *Aufgabe: DFA minimieren*
 
 Minimieren Sie den folgenden DFA:\\
+\begin{tikzpicture}
+		\node[state, initial] (s1) {$s_1$};
+		\node[state, above right=of s1] (s2) {$s_2$};
+		\node[state, accepting, right=2cm of s2] (s3) {$s_3$};
+		\node[state, accepting, below right=of s1] (s4) {$s_4$};
+		\node[state, right=2cm of s4] (s5) {$s_5$};
+		\node[state, above right=of s5] (s6) {$s_6$};
+		
+		\draw (s1) edge[above left] node{a} (s2)
+		(s1) edge[below left] node{b} (s4)
+		(s2) edge[above] node{a} (s3)
+		(s2) edge[left] node{b} (s4)
+		(s3) edge[below right, bend left] node{a} (s4)
+		(s3) edge[right] node{b} (s5)
+		(s4) edge[above left, bend left] node{a} (s3)
+		(s4) edge[below] node{b} (s5)
+		(s5) edge[loop right] node{a,b} (s5)
+		(s6) edge[above right] node{a} (s3)
+		(s6) edge[below right] node{b} (s5);
+\end{tikzpicture}
 
-*Aufgabe: CYK-Algorithmus*
+*** *Aufgabe: CYK-Algorithmus*
 
 Gegeben sei die Grammatik \(G=(\{S, A, B, C, D\}, \{a, b, c\}, S, P)\)
-mit \[\begin{aligned}
+mit \\
+\[\begin{aligned}
         P:S\rightarrow & AB \mid BC\\
         A\rightarrow & a \mid BB \mid BS\\
         B\rightarrow & b \mid CD \mid DA\\
         C\rightarrow & c \mid AS \mid BD\\
-        D\rightarrow & a \mid CB \mid AA
-    
-\end{aligned}\] Prüfen Sie mit dem CYK-Algorithmus, ob das Wort
-\(bacaac\) in \(L(G)\) enthalten ist.\\
+        D\rightarrow & a \mid CB \mid AA    
+\end{aligned}\]
+
+Prüfen Sie mit dem CYK-Algorithmus, ob das Wort \(bacaac\) in \(L(G)\) enthalten ist.\\
 CYK-Demo: [[https://www.cip.ifi.lmu.de/~lindebar/]]
 
 #+begin_example
@@ -46,14 +91,14 @@ CYK-Demo: [[https://www.cip.ifi.lmu.de/~lindebar/]]
         D -> a | CB | AA
 #+end_example
 
-*Aufgabe: Resolution*
+*** *Aufgabe: Resolution*
 
 Prüfen Sie mittels Resolution, ob die folgende Formel eine Tautologie
 ist:
 
 \[(A\land \neg B \land C) \lor E \lor (\neg A \land D \land \neg E) \lor (B \land C \land \neg D) \lor C \lor \neg B\]
 
-*Aufgabe: PDA*
+*** *Aufgabe: PDA*
 
 Die folgende Sprache über dem Alphabet \(\Sigma=\{a, b, c\}\) ist
 deterministisch kontextfrei:
@@ -65,7 +110,7 @@ deterministisch kontextfrei:
 2) Ist die Akzeptanz mittels leerem Keller möglich? Begründen Sie Ihre
    Antwort.
 
-*Aufgabe: Turingmaschine*
+*** *Aufgabe: Turingmaschine*
 
 Konstruieren Sie eine Turingmaschine, die auf einem Eingabewort aus dem
 Alphabet \(\Sigma = \{|, -\}\) eine Subtraktion \(x-y\) durchführt.
@@ -83,13 +128,13 @@ notiert als: \[\#||||-||\#\] Nach Bearbeitung des Eingabewortes steht
 auf dem Band \[\#||\#\] und die Turingmaschine befindet sich in einem
 Endzustand.
 
-*Aufgabe: Pumping-Lemma für reguläre Sprachen*
+*** *Aufgabe: Pumping-Lemma für reguläre Sprachen*
 
 Zeigen Sie, dass
 \[L=\{a^ib^jv \mid v \in \{a\}^* \land |v| \textrm{ ist ungerade } \land j=2i\}\]
 über dem Alphabet \(\Sigma=\{a,b\}\) nicht regulär ist.
 
-*Aufgabe: Pumping-Lemma für kontextfreie Sprachen*
+*** *Aufgabe: Pumping-Lemma für kontextfreie Sprachen*
 
 Zeigen Sie, dass \[L=\{a^ib^jc^k \mid i<j<k\}\] über dem Alphabet
 \(\Sigma=\{a,b,c\}\) nicht kontextfrei ist.

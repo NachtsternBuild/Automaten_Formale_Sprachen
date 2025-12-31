@@ -1,12 +1,32 @@
+#+LATEX_COMPILER: xelatex
+#+LATEX_CLASS: scrartcl
+#+LATEX_CLASS_OPTIONS: [a4paper,14pt,ngerman]
+#+OPTIONS: ':t toc:nil title:nil
+
+#+LANGUAGE: de
+
+#+LATEX_HEADER: \usepackage{polyglossia}
+#+LATEX_HEADER: \setdefaultlanguage{german}
+#+LATEX_HEADER: \PolyglossiaSetup{german}{shorthands=on}
+#+LATEX_HEADER: \AtBeginDocument{\let\babelprovide\relax}
+#+LATEX_HEADER: \AtBeginDocument{\let\shorthandon\relax}
+#+LATEX_HEADER: \AtBeginDocument{\let\shorthandoff\relax}
+#+LATEX_HEADER: \setmainfont{Gentium Book Basic}
+#+LATEX_HEADER: \setsansfont{Latin Modern Sans}
+#+LATEX_HEADER: \setmonofont{Latin Modern Mono}
+#+LATEX_HEADER: \usepackage{fancyhdr}
+#+LATEX_HEADER: \usepackage{graphicx}
+#+LATEX_HEADER: \usepackage{amsmath,amssymb}
+#+LATEX_HEADER: \usepackage{xcolor}
+#+LATEX_HEADER: \usepackage{xurl}
+#+LATEX_HEADER: \usepackage{listings}
+#+LATEX_HEADER: \usepackage{setspace}
+#+LATEX_HEADER: \setstretch{1.3}
 #+title: Vertiefung in der Praxisphase
 
-#+begin_center
-*Vertiefung in der Praxisphase*\\
-*Turingmaschinen und Parser*\\
-
-#+end_center
-
-*Aufgabe 1*
+* *Vertiefung in der Praxisphase*
+** *Turingmaschinen und Parser*
+*** *Aufgabe 1*
 
 In der Vorlesung wurde besprochen, wie eine 2-Band-Turingmaschine das
 Wortproblem für die Sprache \[L=\{ww \mid w \in \{a,b\}^+\}\]
@@ -15,7 +35,7 @@ gleich mächtig sind, muss dieses Problem auch von einer
 Ein-Band-Turingmaschine entschieden werden können. Konstruieren Sie eine
 solche Turingmaschine.
 
-*Vorbemerkungen zu Aufgabe 2*
+*** *Vorbemerkungen zu Aufgabe 2*
 
 Parser wurden in der Vorlesung nicht thematisiert. Erarbeiten Sie sich
 die Inhalte des Papers /LR(k)-Analyse für Pragmatiker/ von Andreas
@@ -24,7 +44,7 @@ Kunert, welches unter\\
 zur Verfügung steht. Sie sollten sich mindestens die Kapitel 1 bis 3
 aneignen, um die folgenden Aufgabe lösen zu können.
 
-*Aufgabe 2*
+*** *Aufgabe 2*
 
 Die präfixfreie Variante der Sprache \(L\) der korrekt geklammerten
 Ausdrücke \[L=\{(), (()), ((())), (()()), \ldots\}\] enthält alle Worte
