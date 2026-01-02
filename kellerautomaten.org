@@ -1,9 +1,4 @@
-* Kellerautomaten
-:PROPERTIES:
-:CUSTOM_ID: kellerautomaten
-:END:
-
-Kellerautomaten (PDA, i.Allg. nichtdeterministisch)
+*** Kellerautomaten (PDA, i.Allg. nichtdeterministisch)
 
 - Grundidee Kellerautomat (PDA, push-down automaton)
 
@@ -27,7 +22,7 @@ Kellerautomaten (PDA, i.Allg. nichtdeterministisch)
   - möglich sind auch \(\varepsilon\)-Übergänge: Zustandsübergang und
     Stack- Operationen ohne Weiterlesen des Eingabewortes
 
-Spezifikation PDA
+*** Spezifikation PDA
 
 - Spezifikation nichtdeterministischer PDA\\
   \(A_{PDA}=(S, \Sigma, \Gamma, \delta, s_0, \#, F)\)
@@ -52,7 +47,14 @@ Spezifikation PDA
 - Konfigurationsübergang:
   \((s_1, av, A\beta) \mapsto (s_2, v, \alpha\beta)\)
 
-Akzeptierte Sprache
+\begin{tikzpicture}
+	\node[state] (s1) {$s_1$};
+	\node[state, right=of s1] (s2) {$s_2$};
+		
+	\draw (s1) edge[above] node{$a, A/\alpha$} (s2);
+\end{tikzpicture}
+
+*** Akzeptierte Sprache
 
 - Akzeptanzverhalten
 
@@ -73,11 +75,10 @@ Akzeptierte Sprache
   - zu jedem nichtdet. PDA \(K\) gibt es einen PDA \(K'\) mit
     \(L(K') = L_\varepsilon(K)\)
 
-Zusammenhang mit kontextfreien Sprachen
+*** Zusammenhang mit kontextfreien Sprachen
 
 - zu jedem PDA lässt sich eine kontextfreie Grammatik konstruieren, die
-  die gleiche Sprache generiert (siehe Folie
-  [[#Grammatik_aus_PDA][[Grammatik_aus_PDA]]])
+  die gleiche Sprache generiert (siehe Folie  [[#Grammatik_aus_PDA]] \pageref{Grammatik_aus_PDA}) 
 
 - zu jeder kontextfreien Grammatik lässt sich ein (i.Allg.
   nichtdeteministischer) PDA konstruieren, der die gleiche Sprache
@@ -99,13 +100,33 @@ Zusammenhang mit kontextfreien Sprachen
   - Äquivalenter PDA ist i.Allg. nichtdeterministisch; lässt sich
     i.Allg. _nicht_ in einen deterministischen PDA äquivalent umrechnen
 
-Beispiel: Umwandlung Typ-2-Grammatik \(\rightarrow\) Kellerautomat
+*** Beispiel: Umwandlung Typ-2-Grammatik \(\rightarrow\) Kellerautomat
+
 Grammatik:
 \[P=\{ S\rightarrow \varepsilon \mid X, \quad X \rightarrow aXa\mid bXb \mid aa \mid bb\}\]
 Kellerautomat:\\
 
-PDA, der mit leerem Keller akzeptiert \(\rightarrow\) kontextfreie
-Grammatik
+\begin{tikzpicture}
+	\node[state, initial] (s0) {$s_0$};
+	\node[state, right=of s0] (s1) {$s_1$};
+	\node[state, accepting, below=of s1] (s2) {$s_2$};
+	\draw (s0) edge[above] node{$\varepsilon, \#/S\#$} (s1)
+	      (s1) edge[loop right, align=center] node{
+			$a,a/\varepsilon$\\
+			$b,b/\varepsilon$\\
+			$\varepsilon,X/bb$\\
+			$\varepsilon,X/aa$\\
+			$\varepsilon,X/bXb$\\
+			$\varepsilon,X/aXa$\\
+			$\varepsilon,S/X$\\
+                        $\varepsilon,S/\varepsilon$} (s1)
+  			(s1) edge[left] node{$\varepsilon,\#/\#$} (s2);
+\end{tikzpicture}
+
+*** PDA, der mit leerem Keller akzeptiert \(\rightarrow\) kontextfreie Grammatik
+:PROPERTIES:
+:CUSTOM_ID: Grammatik_aus_PDA
+:END:
 
 Regeln
 
@@ -119,10 +140,15 @@ Regeln
 - Übergang \((s_j,a,A,s_k,\varepsilon)\)\\
   \([s_j,A,s_k]\rightarrow a\)
 
-Beispiel \(L=\{a^nb^n \mid n \geq 1\}\)\\
+Beispiel:
+
+\(L=\{a^nb^n \mid n \geq 1\}\)\\
 \(\delta=\{(s_0,a,\#,s_0,A),(s_0,a,A,s_0,AA),\)\\
 \((s_0,b,A,s_1,\varepsilon),(s_1,b,A,s_1,\varepsilon)\}\)\\
-Regeln: \(P=\{S \rightarrow [s_0,\#,s_0]|[s_0,\#,s_1],\)\\
+
+Regeln:
+
+\(P=\{S \rightarrow [s_0,\#,s_0]|[s_0,\#,s_1],\)\\
 \([s_0,\#,s_0]\rightarrow a[s_0,A,s_0],\)\\
 \([s_0,\#,s_1]\rightarrow a[s_0,A,s_1],\)\\
 \([s_0,A,s_0]\rightarrow a[s_0,A,s_0][s_0,A,s_0],\)\\
@@ -132,8 +158,16 @@ Regeln: \(P=\{S \rightarrow [s_0,\#,s_0]|[s_0,\#,s_1],\)\\
 \([s_0,A,s_1]\rightarrow b,\)\\
 \([s_1,A,s_1]\rightarrow b\}\)
 
-Berechnung: PDA, der mit leerem Keller akzeptiert \(\rightarrow\)
-kontextfreie Grammatik
+*** Berechnung: PDA, der mit leerem Keller akzeptiert \(\rightarrow\) kontextfreie Grammatik
+
+\begin{tikzpicture}
+	\node[state, initial] (s0) {$s_0$};
+	\node[state, right=of s0] (s1) {$s_1$};
+	\draw	(s0) edge[loop above] node{$a, \#/A$} (s0)
+	(s0) edge[loop below] node{$a, A/AA$} (s0)
+	(s0) edge[above] node{$b, A/\varepsilon$} (s1)
+	(s1) edge[loop above] node{$b,A/\varepsilon$} (s1);
+\end{tikzpicture}
 
 |         | a |         | a |         | b |         | b |         |  |  |  |  |
 |---------+---+---------+---+---------+---+---------+---+---------+--+--+--+--|
@@ -156,7 +190,7 @@ kontextfreie Grammatik
   \(A\) auf dem Stack und Übergang in \(s_1\):\\
   \([s_0, A, s_1] \rightarrow b\)
 
-Deterministische Kellerautomaten (DPDA): Problemstellung
+*** Deterministische Kellerautomaten (DPDA): Problemstellung
 
 - Für praktische Anwendungen (Parser) wird ein im wesentlichen lineares
   Laufzeitverhalten angestrebt
@@ -173,7 +207,7 @@ Deterministische Kellerautomaten (DPDA): Problemstellung
   deterministischen Kellerautomaten (per Endzustand) akzeptiert werden.
   Sie bilden damit eine _Unterklasse_ der kontextfreien Sprachen.
 
-Deterministische Kellerautomaten
+*** Deterministische Kellerautomaten
 
 - Spezifikation:\\
   deterministische Zustandsüberführungsfunktion;
@@ -197,7 +231,7 @@ Deterministische Kellerautomaten
   leerem Keller akzeptiert werden können, sind genau die mit
   Präfixeigenschaft
 
-Beziehungen zwischen Sprachklassen
+*** Beziehungen zwischen Sprachklassen
 
 - Die det. kontextfreien Sprachen \(L_\varepsilon(A)\) (mit
   Präfixeigenschaft, Akzeptanz per leerem Keller) sind echt in den det.
@@ -216,16 +250,32 @@ Beziehungen zwischen Sprachklassen
 - es gibt Sprachen in \(L_\varepsilon(A)\), die nicht regulär sind (z.B
   \({a^nb^n}\))
 
-Exkurs: (N)FA im RL Pac-Man [fn:1]
+*** Exkurs: (N)FA im RL Pac-Man [fn:3]
 
 [[file:images/Pac-Man.png]]
 
-Exkurs: PDA im RL Drehkreuz
+\begin{tikzpicture}
+	\node[state, initial] (w) {wander};
+	\node[state, right=3cm of w] (c) {chase};
+	\node[state, below=of w] (r) {return};
+	\node[state, below=of c, right=3.24cm of r]  (f) {flee};
+			
+	\draw
+		(w) edge[bend left=10, above] node{PM spotted} (c)
+		(w) edge[bend left=10, above] node{PM power-up} (f)
+		(c) edge[bend left=10, below] node{lost PM} (w)
+		(c) edge[right] node{PM power-up} (f)
+		(f) edge[bend left=10, below] node{PM power-dn} (w)
+		(f) edge[below] node{eaten by PM} (r)
+		(r) edge[left] node{reach base} (w);
+\end{tikzpicture}
+
+*** Exkurs: PDA im RL Drehkreuz
 
 #+begin_center
 [[file:images/turnstile.png]]
 
 #+end_center
 
-[fn:1] Applications of Deterministic Finite Automata, Eric Gribkoff,
-       [[https://www.cs.ucdavis.edu/~rogaway/classes/120/spring13/eric-dfa.pdf]]
+
+[fn:3] Applications of Deterministic Finite Automata, Eric Gribkoff, [[https://www.cs.ucdavis.edu/~rogaway/classes/120/spring13/eric-dfa.pdf]]

@@ -1,9 +1,4 @@
-* Typ-0-Sprachen und Turing-Maschinen
-:PROPERTIES:
-:CUSTOM_ID: typ-0-sprachen-und-turing-maschinen
-:END:
-
-Wortproblem
+*** Wortproblem
 
 - Wortproblem für Typ-0- bzw. Typ-1-Sprachen
 
@@ -31,7 +26,7 @@ Wortproblem
   (bzw. Linear beschränkter Automat (LBA) als Spezialfall für
   Typ-1-Sprachen)
 
-Exkurs: Abzählbarkeit von Mengen
+*** Exkurs: Abzählbarkeit von Mengen
 
 - Mächtigkeit unendlicher Mengen A, B:
 
@@ -59,7 +54,7 @@ Exkurs: Abzählbarkeit von Mengen
 
 - Folgerung: /es gibt offensichtlich unentscheidbare Sprachen/
 
-Semi-entscheidbare und rekursiv aufzählbare Sprachen
+*** Semi-entscheidbare und rekursiv aufzählbare Sprachen
 
 - es gilt: \(L\) ist entscheidbar gdw. \(L\) und \(\overline{L}\) sind
   semi-entscheidbar
@@ -80,7 +75,7 @@ Semi-entscheidbare und rekursiv aufzählbare Sprachen
 - es gilt: die Typ-0-Sprachen sind genau die rekursiv aufzählbaren
   Sprachen
 
-Nichtdeterministische Turing-Maschinen
+*** Nichtdeterministische Turing-Maschinen
 
 - TM "Hardware" (Basismodell 1-Band-TM):
 
@@ -108,7 +103,7 @@ Nichtdeterministische Turing-Maschinen
 
   - Menge von Endzuständen, \(F \subseteq S\)
 
-Konfigurationsübergänge, Akzeptanzverhalten
+*** Konfigurationsübergänge, Akzeptanzverhalten
 
 - Konfiguration:\\
   \((s, u\underline{\alpha}v)\): Zustand \(s\), Bandinhalt
@@ -134,7 +129,7 @@ Konfigurationsübergänge, Akzeptanzverhalten
   - "TM hält" bedeutet: in der jeweiligen Konfiguration gibt es keinen
     Folgeübergang
 
-Varianten von TM
+*** Varianten von TM
 
 - Ein-Band-TM\\
   linksbeschränktes Band; unbeschränktes Band; Mehrspur-TM: LS-Köpfe
@@ -152,13 +147,18 @@ Varianten von TM
   natürliche Zahl \(n \rightarrow |^n\) (unäre Darstellung,
   "Bierdeckelnotation"), oder Binärdarstellung
 
-TM: Beispiel \[L=\{a^nb^n \mid n\geq 0\}\] \[\begin{aligned}
-        \delta = \{&(s_0, a, s_1, x, R), (s_0, x, s_0, x, R), (s_0, \#, s_f, \#, N),\\
-        &(s_1, x, s_1, x, R), (s_1, a, s_1, a, R), (s_1, b, s_2, x, R),\\
-        &(s_2, b, s_2, b, R), (s_2, \#, s_3, \#, L), (s_3, b, s_3, b, L),\\
-        &(s_3, x, s_3, x, L), (s_3, a, s_3, a, L), (s_3, \#, s_0, \#, R)\}
-    
-\end{aligned}\] Arbeitsweise
+*** TM: Beispiel
+
+\[L=\{a^nb^n \mid n\geq 0\}\] \\
+
+\[\begin{aligned}
+	\delta = \{&(s_0, a, s_1, x, R), (s_0, x, s_0, x, R), (s_0, \#, s_f, \#, N),\\
+	&(s_1, x, s_1, x, R), (s_1, a, s_1, a, R), (s_1, b, s_2, x, R),\\
+	&(s_2, b, s_2, b, R), (s_2, \#, s_3, \#, L), (s_3, b, s_3, b, L),\\
+	&(s_3, x, s_3, x, L), (s_3, a, s_3, a, L), (s_3, \#, s_0, \#, R)\}
+\end{aligned}\]
+
+Arbeitsweise:
 
 - erstes verbliebenes \(a\) wird durch Füllzeichen \(x\) überschrieben
 
@@ -171,7 +171,7 @@ TM: Beispiel \[L=\{a^nb^n \mid n\geq 0\}\] \[\begin{aligned}
 - falls \(w\in L\): am Schluss stehen nur noch \(x\) auf dem Band;
   Übergang in akzeptierenden Zustand \(s_f\)
 
-Linear beschränkte Automaten (LBA) und kontextsensitive Sprachen
+*** Linear beschränkte Automaten (LBA) und kontextsensitive Sprachen
 
 - LBA: TM, die den Bandbereich auf dem die Eingabe steht niemals
   verlässt (in-place)
@@ -191,7 +191,7 @@ Linear beschränkte Automaten (LBA) und kontextsensitive Sprachen
     korrespondierende Typ-1-Regel in \(P\):
     \(c(s_1, a) \rightarrow (s_2, c)b\) für alle \(c \in \Gamma\)
 
-Turingmaschinen und Typ-0-Sprachen
+*** Turingmaschinen und Typ-0-Sprachen
 
 - es gilt: die durch allgemeine TM akzeptierten Sprachen sind genau die
   Typ-0-Sprachen\\
@@ -208,7 +208,7 @@ Turingmaschinen und Typ-0-Sprachen
 
   - Typ-0-Sprachen _sind nicht_ abgeschlossen unter Komplement
 
-eine entscheidbare Sprache, die nicht in \(L_1\) liegt
+*** Eine entscheidbare Sprache, die nicht in \(L_1\) liegt
 
 - Worte \(w \in \Sigma^*\) sind aufzählbar: \(w_1, w_2, \ldots\)\\
   Damit kann jedem Wort eineindeutig eine Nummer \(i\) zugeordnet werden
@@ -225,7 +225,7 @@ eine entscheidbare Sprache, die nicht in \(L_1\) liegt
 
   - \(L_D\) ist entscheidbar
 
-Sprachklassen: Zusammenfassung und Ausblick
+*** Sprachklassen: Zusammenfassung und Ausblick
 
 [[file:images/Sprachklassen_Typ0_Typ1.pdf]]
 
@@ -239,7 +239,7 @@ Sprachklassen: Zusammenfassung und Ausblick
 - es gibt Sprachen, die nicht Typ-0 sind, d.h. nicht durch eine
   Grammatik erzeugt werden können (z.B. \(\overline{L_H}\))
 
-Alan Mathison Turing (, )
+*** Alan Mathison Turing (\textborn 1912, \textdied 1954)
 
 - englischer Mathematiker, Logiker, Kryptoanalytiker, Informatiker
 
@@ -256,6 +256,7 @@ Alan Mathison Turing (, )
   - /On Computable Numbers, with an Application to the
     Entscheidungsproblem/ (1936)
 
-[[file:images/Alan_Turing_(1951)_(crop).jpg]][fn:1]
+[[file:images/Alan_Turing_(1951)_(crop).jpg]][fn:4]
 
-[fn:1] [[https://commons.wikimedia.org/wiki/File:Alan_Turing_(1951)_(crop).jpg]]
+[fn:4] [[https://commons.wikimedia.org/wiki/File:Alan_Turing_(1951)_(crop).jpg]]
+

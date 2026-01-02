@@ -1,9 +1,4 @@
-* Reguläre Sprachen und Endliche Automaten
-:PROPERTIES:
-:CUSTOM_ID: reguläre-sprachen-und-endliche-automaten
-:END:
-
-Endliche Automaten (Finite-State Machine (FSM), Finite Automaton (FA))
+*** Endliche Automaten (Finite-State Machine (FSM), Finite Automaton (FA))
 
 - Grundkonzept
 
@@ -29,13 +24,13 @@ Endliche Automaten (Finite-State Machine (FSM), Finite Automaton (FA))
   - Wort wird nicht generiert (Grammatik) sondern akzeptiert (als
     zugehörig erkannt)
 
-Exkurs: Tools zur Simulation von Automaten
+*** Exkurs: Tools zur Simulation von Automaten
 
 - [[https://www.jflap.org/]]
 
 - [[https://flaci.com]]
 
-Deterministischer Endlicher Automat (DFA)
+*** Deterministischer Endlicher Automat (DFA)
 
 - Allgemeine Spezifikation eines DFA \(A\):\\
   \(A=\left(S, \Sigma, \delta, s_0, F\right)\)
@@ -52,18 +47,27 @@ Deterministischer Endlicher Automat (DFA)
 
 - Graphische Darstellung: Zustände als Knoten eines Graphen
   (Zustandsgraph)\\
+  \begin{tikzpicture}
+	\node[state, initial] (s0) {$s_0$};
+	\node[state, accepting, right=of s0] (sf) {$s_f$};
+	\node[state, right=of sf] (s1) {$s_1$};
+	\node[state, right=1cm of s1] (s2) {$s_2$};
+			
+	\draw	(s1) edge[above] node{a} (s2);
+  \end{tikzpicture}
 
-Beispiel DFA \[\begin{aligned}
-        A &= (S, \Sigma, \delta, s_0, F)\\
-        S &= \left\{s_0, s_1, s_2, s_3\right\}\\
-        \Sigma &= \{a, b\}\\
-        F &= \{s_3\}\\
-        \delta &= \{(s_0, a, s_1), (s_0, b, s_3), (s_1, a, s_2), (s_1, b, s_0), \\
-        & \qquad (s_2, a, s_3), (s_2, b, s_1), (s_3, a, s_0), (s_3, b, s_2)\}
-    
+*** Beispiel DFA
+
+\[\begin{aligned}
+	A &= (S, \Sigma, \delta, s_0, F)\\
+	S &= \left\{s_0, s_1, s_2, s_3\right\}\\
+	\Sigma &= \{a, b\}\\
+	F &= \{s_3\}\\
+	\delta &= \{(s_0, a, s_1), (s_0, b, s_3), (s_1, a, s_2), (s_1, b, s_0), \\
+	& \qquad (s_2, a, s_3), (s_2, b, s_1), (s_3, a, s_0), (s_3, b, s_2)\}	
 \end{aligned}\]
 
-Durch DFA akzeptierte Sprachen: Reguläre Sprachen
+*** Durch DFA akzeptierte Sprachen: Reguläre Sprachen
 
 - Konfiguration des Automaten: \(A: (s,u)\)
 
@@ -89,7 +93,7 @@ Durch DFA akzeptierte Sprachen: Reguläre Sprachen
     zusätzlich die Regeln \(S \rightarrow a\), falls \(s'\) Endzustand
     und \(S_0 \rightarrow \varepsilon\), falls \(s_0\) Endzustand
 
-Nichtdeterministische endliche Automaten (NFA)
+*** Nichtdeterministische endliche Automaten (NFA)
 
 - Ausgangspunkt: Typ-3-Grammatiken erlauben Regeln der Art\\
   \(S_1 \rightarrow aS_2 \mid aS_3\)
@@ -111,19 +115,32 @@ Nichtdeterministische endliche Automaten (NFA)
 
   - \(S_0:\) Menge von Startzuständen (mehrere sind erlaubt)
 
-Beispiel NFA
+*** Beispiel NFA
+:PROPERTIES:
+:CUSTOM_ID: NFA_Beispiel
+:END:
 
-\\
+\begin{tikzpicture}
+	\node[state, initial] (s0) {$s_0$};
+	\node[state, initial, initial where=above, right=of s0] (s1) {$s_1$};
+	\node[state, accepting, right=of s1] (s2) {$s_2$};
+		
+	\draw (s0) edge[loop, above] node{$0|1$} (s0);
+	\draw (s0) edge[above] node{$0$} (s1);
+	\draw (s1) edge[above] node{$0$} (s2);
+\end{tikzpicture}\\
+
 \(A=(S, \Sigma, \delta, S_0, F)\)\\
 \(S=\{s_0, s_1, s_2\}\)\\
 \(S_0=\{s_0, s_1\}\)\\
 \(\Sigma=\{0,1\}\)\\
 \(F=\{s_2\}\)\\
 \(\delta=\{(s_0,0,s_0), (s_0, 1, s_0), (s_0, 0, s_1), (s_1, 0, s_2)\}\)\\
+
 Akzeptierte Sprache:
 \(L(A)=\left\{w \in \Sigma^* \mid w=0 \lor w=x00, x\in \Sigma^*\right\}\)
 
-Simulation des Verhaltens von NFAs
+*** Simulation des Verhaltens von NFAs
 
 - Backtracking: Tiefensuche
 
@@ -153,7 +170,7 @@ Simulation des Verhaltens von NFAs
   - Akzeptierte Sprache\\
     \(L(A)=\left\{w \in \Sigma^* \mid \hat{\delta}(S_0,w)\cap F \neq \varnothing\right\}\)
 
-Äquivalenz von DFA und NFA
+*** Äquivalenz von DFA und NFA
 
 - jede durch einen NFA akzeptierte Sprache kann auch durch einen DFA
   akzeptiert werden (umgekehrt sowieso)
@@ -174,8 +191,12 @@ Simulation des Verhaltens von NFAs
 - Nutzen: mit NFA kann eine Sprache leichter modelliert werden
   \(\rightarrow\) zur Anwendung in DFA umrechnen
 
-Algorithmus zur Umwandlung NFA in DFA (verbal) NFA:
-\(A_n=(S_n, \Sigma, \delta_n, S_0^n, F_n)\), DFA:
+*** Algorithmus zur Umwandlung NFA in DFA (verbal)
+
+NFA:
+\(A_n=(S_n, \Sigma, \delta_n, S_0^n, F_n)\),
+
+DFA:
 \(A_d=(S_d, \Sigma, \delta_d, s_0^d, F_d)\)
 
 1. \(S_d\) ist die Potenzmenge von \(S_n\)
@@ -193,8 +214,9 @@ Algorithmus zur Umwandlung NFA in DFA (verbal) NFA:
    Diese Kombination wird zur Übergangsfunktion \(\delta_d\)
    hinzugefügt.
 
-Beispiel: Umwandlung NFA in DFA (Berechnung) Beispiel zur Umwandlung des
-NFA aus Folie [[#NFA_Beispiel][[NFA_Beispiel]]] in DFA:
+*** Beispiel: Umwandlung NFA in DFA (Berechnung)
+
+Beispiel zur Umwandlung des NFA aus Folie [[#NFA_Beispiel]] \pageref{NFA_Beispiel} in DFA:
 
 - \(S_d=\{\varnothing, s_0, s_1, s_2, s_0s_1, s_0s_2, s_1s_2, s_0s_1s_2\}\)
 
@@ -213,11 +235,66 @@ NFA aus Folie [[#NFA_Beispiel][[NFA_Beispiel]]] in DFA:
   \(\varnothing, s_1, s_2, s_1s_2\) und \(s_0s_2\) nicht relevant, da
   sie vom Startzustand \(s_0s_1\) aus nicht erreicht werden können.
 
-Beispiel: Umwandlung NFA in DFA (Zustandsgraph)
+*** Beispiel: Umwandlung NFA in DFA (Zustandsgraph)
 
-Nur relevante Zustände:
+\begin{columns}
+	\column{.5\textwidth}
+	\centering
+		
+	\vspace{0.3cm}
+	\tikzset {node distance=1cm}
+	\begin{tikzpicture}
+		\node[state] (s0) {$s_0$};
+			
+		\node[state, accepting, below=of s0] (s0s2) {$s_0s_2$};
+		\node[state, initial, initial where=right, right=of s0s2] (s0s1) {$s_0s_1$};
+		\node[state, accepting, right=of s0] (s0s1s2) {$s_0s_1s_2$};
+			
+		\node[state, below=of s0s2] (s1) {$s_1$};
+		\node[state, accepting, right=of s1] (s2) {$s_2$};
+		\node[state, accepting, below=of s2] (s1s2) {$s_1s_2$};
+			
+		\node[state, below=of s1] (leer) {$\varnothing$};
+			
+		\draw	(leer) edge[loop left] node{0,1} (leer)
+			(s0) edge[bend left, below left] node{0} (s0s1)
+			(s0) edge[loop left] node{1} (s0)
+			(s1) edge[above] node{0} (s2)
+			(s1) edge[right] node{1} (leer)
+			(s2) edge[below right] node{0,1} (leer)
+			(s0s1) edge[right] node{0} (s0s1s2)
+			(s0s1) edge[bend left, above right] node{1} (s0)
+			(s0s2) edge[below] node{0} (s0s1)
+			(s0s2) edge[left] node{1} (s0)
+			(s1s2) edge[right] node{0} (s2)
+			(s1s2) edge[below] node{1} (leer)
+			(s0s1s2) edge[loop right] node{0} (s0s1s2)
+			(s0s1s2) edge[above] node{1} (s0);
+	\end{tikzpicture}
+	\column{.5\textwidth}
+	
+	Nur relevante Zustände:
+		
+	\vspace{0.5cm}
+	\centering
+	\tikzset {node distance=1cm}
+	\begin{tikzpicture}
+		\node[state] (s0) {$s_0$};
+			
+		\node[state, initial, initial where=right, right=of s0s2] (s0s1) {$s_0s_1$};
+		\node[state, accepting, right=of s0] (s0s1s2) {$s_0s_1s_2$};
+			
+		\draw
+		(s0) edge[bend left, below left] node{0} (s0s1)
+		(s0) edge[loop left] node{1} (s0)
+		(s0s1) edge[right] node{0} (s0s1s2)
+		(s0s1) edge[bend left, below left] node{1} (s0)
+		(s0s1s2) edge[loop right] node{0} (s0s1s2)
+		(s0s1s2) edge[above] node{1} (s0);
+	\end{tikzpicture}
+\end{columns}
 
-Äquivalenz von Typ-3-Sprachen und regulären Sprachen
+*** Äquivalenz von Typ-3-Sprachen und regulären Sprachen
 
 - Menge der regulären Sprachen Teilmenge der Typ-3-Sprachen:\\
   \(\rightarrow\) schon gezeigt (DFA)
@@ -236,7 +313,7 @@ Nur relevante Zustände:
   ein; für \(S_1\) die Regeln für \(S_0\)\\
   einsetzen (Kettenregel); \(S_1\) verbleibt als Zustand
 
-Minimalautomat
+*** Minimalautomat
 
 - Ausgangspunkt: ein DFA;\\
   Ziel: konstruiere einen äquivalenten DFA mit geringster Anzahl von
@@ -262,9 +339,27 @@ Minimalautomat
   von Zuständen konstruiert werden (insbesondere falls Menge der
   Nichtendzustände leer)
 
-Beispiel: Minimalautomat (Ausgangssituation)
+*** Beispiel: Minimalautomat (Ausgangssituation)
+\begin{tikzpicture}
+	\node[state, initial] (s0) {$s_0$};
+	\node[state, right=of s0] (s2) {$s_2$};
+	\node[state, above=of s2] (s1) {$s_1$};
+	\node[state, below=of s2] (s3) {$s_3$};
+	\node[state, accepting, right=of s2] (s4) {$s_4$};
+		
+	\draw	(s0) edge[above left] node{0} (s1)
+		(s0) edge[above] node{1} (s2)
+		(s1) edge[above right] node{0} (s4)
+		(s1) edge[right] node{1} (s2)
+		(s2) edge[right] node{0} (s3)
+		(s2) edge[loop right] node{1} (s2)
+		(s3) edge[below right] node{0} (s4)
+		(s3) edge[below left] node{1} (s0)
+		(s4) edge[loop right] node{0,1} (s4);
+\end{tikzpicture}
 
-Beispiel: Minimalautomat (Ergebnis)
+
+*** Beispiel: Minimalautomat (Ergebnis)
 
 | \(s_0\) | -       | -       | -       | -       | -       |
 |---------+---------+---------+---------+---------+---------|
@@ -274,7 +369,21 @@ Beispiel: Minimalautomat (Ergebnis)
 | \(s_4\) | X       | X       | X       | X       | -       |
 |         | \(s_0\) | \(s_1\) | \(s_2\) | \(s_3\) | \(s_4\) |
 
-Abgeschlossenheit regulärer Sprachen Seien \(L, L_1, L_2\) reguläre
+\begin{tikzpicture}
+	\node[state, initial] (s0s2) {$s_0s_2$};
+	\node[state, below=of s0s2] (s1s3) {$s_1s_3$};
+	\node[state, accepting, below=of s1s3] (s4) {$s_4$};
+		
+	\draw	(s0s2) edge[bend left, right] node{0} (s1s3)
+		(s0s2) edge[loop right] node{1} (s0s2)
+		(s1s3) edge[right] node{0} (s4)
+		(s1s3) edge[bend left, left] node{1} (s0s2)
+		(s4) edge[loop right] node{0,1} (s4);
+\end{tikzpicture}
+
+*** Abgeschlossenheit regulärer Sprachen
+
+Seien \(L, L_1, L_2\) reguläre
 Sprachen. Dann sind auch die folgenden Sprachen regulär:
 
 - jede endliche Sprache \(L_{3} \subset \Sigma^*\)
@@ -299,7 +408,7 @@ Eine Sprache \(L\) ist regulär gdw. sie lässt sich durch endlich viele
 Anwendungen der Operationen Vereinigung, Konkatenation und \(*\) aus
 einer endlichen Sprache erzeugen.
 
-Reguläre Ausdrücke
+*** Reguläre Ausdrücke
 
 - Zweck: Mittel zur Beschreibung regulärer Sprachen
 
@@ -334,7 +443,7 @@ Reguläre Ausdrücke
 
 - Siehe auch: https://stackoverflow.com/questions/1732348
 
-\(\varepsilon\)-Automaten (\(\varepsilon\)FA)
+*** \(\varepsilon\)-Automaten (\(\varepsilon\)FA)
 
 - Definition: Erweiterung von NFA; es werden Zustandsübergänge
   zugelassen ohne Lesen eines Zeichens\\
@@ -350,15 +459,67 @@ Reguläre Ausdrücke
 
 - Beispiel: \(\alpha=a^*b^*\)
 
-Zusammengesetzte Automaten
+*** Zusammengesetzte Automaten
 
-0.5
+\begin{tikzpicture}
+	\node[state, initial] (s0) {$s_0$};
+	\node[state, right=1.5cm of s0, accepting] (sf) {$s_f$};
+			
+	\draw	(s0) edge[above] node{$\alpha$} (sf);
+\end{tikzpicture}
 
-0.5 Top-Down-Zugang: zerlege den durch den regulären Ausdruck \(\alpha\)
-beschriebenen Automaten in Teilbestandteile
+Top-Down-Zugang: zerlege den durch den regulären Ausdruck $\alpha$ beschriebenen Automaten in Teilbestandteile
+	
+\begin{tikzpicture}
+	\node[state] (s11l) {$s_1$};
+	\node[state, right=1.5cm of s11l] (s21l) {$s_2$};
+	\draw (s11l) edge[above] node{$\alpha_1|\alpha_2$} (s21l);
+		
+	\coordinate[right=1cm of s21l] (a1l);
+	\coordinate[right=1cm of a1l] (a1r);
+	\draw [-Triangle, line width=3pt](a1l) -- (a1r);
+		
+	\node[state, right=1cm of a1r] (s11r) {$s_1$};
+	\node[state, right=1.5cm of s11r] (s21r) {$s_2$};
+	\draw (s11r) edge[above, bend left] node{$\alpha_1$} (s21r);
+	\draw (s11r) edge[below, bend right] node{$\alpha_2$} (s21r);
+		
+		
+	\node[state, below=0.75cm of s11l] (s12l) {$s_1$};
+	\node[state, right=1.5cm of s12l] (s22l) {$s_2$};
+	\draw (s12l) edge[above] node{$\alpha_1\alpha_2$} (s22l);
+		
+	\coordinate[right=1cm of s22l] (a2l);
+	\coordinate[right=1cm of a2l] (a2r);
+	\draw [-Triangle, line width=3pt](a2l) -- (a2r);
+		
+	\node[state, right=1cm of a2r] (s12r) {$s_1$};
+	\node[state, right=1cm of s12r] (sq2r) {$q$};
+	\node[state, right=1cm of sq2r] (s22r) {$s_2$};
+	\draw (s12r) edge[above] node{$\alpha_1$} (sq2r);
+	\draw (sq2r) edge[above] node{$\alpha_2$} (s22r);
+		
+	\node[state, below=0.5cm of s12l] (s13l) {$s_1$};
+	\node[state, right=1.5cm of s13l] (s23l) {$s_2$};
+	\draw (s13l) edge[above] node{$\alpha^*$} (s23l);
+		
+	\coordinate[right=1cm of s23l] (a3l);
+	\coordinate[right=1cm of a3l] (a3r);
+	\draw [-Triangle, line width=3pt](a3l) -- (a3r);
+		
+	\node[state, right=1cm of a3r] (s13r) {$s_1$};
+	\node[state, right=1cm of s13r] (sq13r) {$q_1$};
+	\node[state, right=1cm of sq13r] (sq23r) {$q_2$};
+	\node[state, right=1cm of sq23r] (s23r) {$s_2$};
+	\draw (s13r) edge[above] node{$\varepsilon$} (sq13r);
+	\draw (sq13r) edge[above, bend left] node{$\varepsilon$} (sq23r);
+	\draw (sq23r) edge[below, bend left] node{$\alpha$} (sq13r);
+	\draw (sq23r) edge[above] node{$\varepsilon$} (s23r);		
+\end{tikzpicture}
 
-Äquivalenz von \(\varepsilon\)FA und NFA Konstruktion eines zu einem
-\(\varepsilon\)FA äquivalenten NFA
+*** Äquivalenz von \(\varepsilon\)FA und NFA
+
+Konstruktion eines zu einem \(\varepsilon\)FA äquivalenten NFA
 
 1. erweitere \(A\) um zwei Zustände \(i\) und \(f\);
    \(\varepsilon\)-Übergänge von \(i\) zu allen Anfangszuständen aus
@@ -382,7 +543,7 @@ beschriebenen Automaten in Teilbestandteile
 
 5. alle \(\varepsilon\)-Übergänge eliminieren
 
-Pumping-Lemma für reguläre Sprachen
+*** Pumping-Lemma für reguläre Sprachen
 
 - Wie kann man feststellen dass eine Sprache _nicht_ regulär ist?
 
@@ -403,8 +564,9 @@ Pumping-Lemma für reguläre Sprachen
 
 Beispiel: \(L=\{a^kb^k\mid k\geq 1\}\)
 
-Entscheidungsprobleme für reguläre Sprachen Seien \(G\) bzw. \(G_1\) und
-\(G_2\) Typ-3 Grammatiken. Die folgenden Probleme sind algorithmisch
+*** Entscheidungsprobleme für reguläre Sprachen
+
+Seien \(G\) bzw. \(G_1\) und \(G_2\) Typ-3 Grammatiken. Die folgenden Probleme sind algorithmisch
 entscheidbar:
 
 - Wortproblem \(w \in L(G)?\)
@@ -417,7 +579,7 @@ entscheidbar:
 
 - Äquivalenzproblem \(L(G_1) = L(G_2)?\)
 
-Zusamenfassung
+*** Zusamenfassung
 
 - reguläre Grammatik (\(w_1 \rightarrow w_2 \in P\))
 

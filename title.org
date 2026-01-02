@@ -1,4 +1,7 @@
-Organisatorisches
+*** Organisatorisches
+:PROPERTIES:
+:CUSTOM_ID: orga
+:END:
 
 - Vorlesungen
 
@@ -31,19 +34,21 @@ Organisatorisches
 
   - Erk, K.; Priese, L.: /Theoretische Informatik/
 
+
 *** Gliederung
 :PROPERTIES:
 :CUSTOM_ID: gliederung
 :END:
 
-Wozu brauche ich das?
+\tableofcontents
+
+*** Wozu brauche ich das?
 
 \[L(A)=\left\{w \in \Sigma^* \mid w=0 \lor w=x00, x\in \Sigma^*\right\}\]
 
 \[\begin{aligned}
-        \delta = \{&(s_0, a, s_1, x, R), (s_0, x, s_0, x, R), (s_0, \#, s_f, \#, N),\\
-        &(s_1, x, s_1, x, R), (s_1, a, s_1, a, R), (s_1, b, s_2, x, R),\\
-        &(s_2, b, s_2, b, R), (s_2, \#, s_3, \#, L), (s_3, b, s_3, b, L),\\
-        &(s_3, x, s_3, x, L), (s_3, a, s_3, a, L), (s_3, \#, s_0, \#, R)\}
-    
+	\delta = \{&(s_0, a, s_1, x, R), (s_0, x, s_0, x, R), (s_0, \#, s_f, \#, N),\\
+	&(s_1, x, s_1, x, R), (s_1, a, s_1, a, R), (s_1, b, s_2, x, R),\\
+	&(s_2, b, s_2, b, R), (s_2, \#, s_3, \#, L), (s_3, b, s_3, b, L),\\
+	&(s_3, x, s_3, x, L), (s_3, a, s_3, a, L), (s_3, \#, s_0, \#, R)\}	
 \end{aligned}\]

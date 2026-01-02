@@ -1,13 +1,7 @@
-* Aussagenlogik
+*** Syntax
 :PROPERTIES:
-:CUSTOM_ID: aussagenlogik
+:CUSTOM_ID: syntax
 :END:
-** Aussagenlogische Formeln
-:PROPERTIES:
-:CUSTOM_ID: aussagenlogische-formeln
-:END:
-
-Syntax
 
 - /Aussage:/ Satz, der entweder wahr (\(w\)) oder falsch (\(f\)) ist;
   Aussagenvariable \(A\); Wahrheitswert \(w(A)\)
@@ -31,7 +25,9 @@ Syntax
 
   - andere Verknüpfungen bilden keine Formel
 
-Präzedenzregeln Vereinbarung zur Reduzierung von Klammern
+*** Präzedenzregeln
+
+Vereinbarung zur Reduzierung von Klammern
 
 - Bindung (analog "Punkt vor Strich"-Rechnung)
 
@@ -47,7 +43,12 @@ Präzedenzregeln Vereinbarung zur Reduzierung von Klammern
 - äußere Klammer weglassen:
   \((((A \lor B) \rightarrow C) \land B) \mapsto (A \lor B \rightarrow C) \land B\)
 
-Semantik aussagenlogischen Formeln wird eine Bedeutung zugeordnet
+*** Semantik
+:PROPERTIES:
+:CUSTOM_ID: semantik
+:END:
+
+aussagenlogischen Formeln wird eine Bedeutung zugeordnet
 
 - Def. Belegung (Interpretation) \(I: V \rightarrow \{f, w\}\)\\
   den Atomen wird jeweils ein konkreter Wahrheitswert zugeordnet
@@ -69,8 +70,9 @@ Semantik aussagenlogischen Formeln wird eine Bedeutung zugeordnet
   - \(I(F \leftrightarrow G)=w\) falls \(I(F)=I(G)\), sonst
     \(I(F \leftrightarrow G)=f\)
 
-Semantik: Darstellung per Wahrheitstafel Wahrheitstafel enthält
-zeilenweise alle möglichen Belegungen
+*** Semantik: Darstellung per Wahrheitstafel
+
+Wahrheitstafel enthält zeilenweise alle möglichen Belegungen
 
 | \(A\) | \(B\) | \(\neg A\) | \(A \land B\) | \(A \lor B\) | \(A \rightarrow B\) | \(A \leftrightarrow B\) |
 |-------+-------+------------+---------------+--------------+---------------------+-------------------------|
@@ -81,11 +83,12 @@ zeilenweise alle möglichen Belegungen
 #+caption: Wahrheitstafel der Grundoperationen
 
 semantische Äquivalenz \(F_1 \equiv F_2\): \(F_1\) und \(F_2\) haben
-gleichen Wahrheitswerteverlauf; z.B.\\
+gleichen Wahrheitswerteverlauf;
+z.B.\\
 \(A \rightarrow B \equiv \neg A \lor B\)\\
 \(A \leftrightarrow B \equiv (A \rightarrow B) \land (B \rightarrow A)\)
 
-Erfüllbarkeit, Tautologie, Kontradiktion
+*** Erfüllbarkeit, Tautologie, Kontradiktion
 
 - Sei \(F\) eine Formel und \(I\) eine Belegung. Falls \(I\) für alle in
   \(F\) vorkommenden Atome definiert ist, so heißt \(I\) _zu \(F\)
@@ -105,7 +108,10 @@ Erfüllbarkeit, Tautologie, Kontradiktion
 
 - es gilt: \(F\) ist Tautologie gdw. \(\neg F\) ist Kontradiktion
 
-Äquivalenz aussagenlogischer Formeln
+*** Äquivalenz aussagenlogischer Formeln
+:PROPERTIES:
+:CUSTOM_ID: äquivalenz
+:END:
 
 - Zwei Formeln \(F\) und \(G\) heißen semantisch äquivalent
   (\(F \equiv G\)), falls für alle Belegungen \(I\) gilt: \(I(F)=I(G)\)
@@ -124,7 +130,7 @@ Erfüllbarkeit, Tautologie, Kontradiktion
   eine äquivalente Formel ersetzt, so entsteht eine zu \(F\) äquivalente
   Formel
 
-Äquivalenzen als Rechenregeln
+*** Äquivalenzen als Rechenregeln
 
 - Idempotenz
 
@@ -150,7 +156,7 @@ Erfüllbarkeit, Tautologie, Kontradiktion
 
   - \((A \lor (B \land C)) \equiv ((A \lor B) \land (A \lor C))\)
 
-Äquivalenzen als Rechenregeln (Fortsetzung)
+*** Äquivalenzen als Rechenregeln (Fortsetzung)
 
 - Absorptionsgesetz
 
@@ -180,22 +186,21 @@ Erfüllbarkeit, Tautologie, Kontradiktion
   - \((A \lor B) \equiv (f \lor B) \equiv B\);
     \((A \land B) \equiv (f \land B) \equiv f \equiv A\)
 
-Beispiel: direkter Beweis der Gültigkeit einer Formel\\
-(als Alternative zur Wahrheitstafel)
+*** Beispiel: direkter Beweis der Gültigkeit einer Formel (als Alternative zur Wahrheitstafel)
 
 \[\begin{aligned}
-                F &=& (A \land (A \rightarrow B)) \rightarrow B\\
-                  &\equiv& \neg (A \land (A \rightarrow B)) \lor B\\
-                  &\equiv& \neg (A \land (\neg A \lor B)) \lor B\\
-                  &\equiv& \neg A \lor \neg(\neg A \lor B) \lor B\\
-                  &\equiv& \neg A \lor (A \land \neg B) \lor B\\
-                  &\equiv& \neg A \lor (A \lor B) \land (\neg B \lor B)\\
-                  &\equiv& \neg A \lor (A \lor B) \land w\\
-                  &\equiv& \neg A \lor A \lor B\\
-                  &\equiv& w \lor B\\
-                  &\equiv& w
-        
+	F &=& (A \land (A \rightarrow B)) \rightarrow B\\
+	  &\equiv& \neg (A \land (A \rightarrow B)) \lor B\\
+	  &\equiv& \neg (A \land (\neg A \lor B)) \lor B\\
+	  &\equiv& \neg A \lor \neg(\neg A \lor B) \lor B\\
+	  &\equiv& \neg A \lor (A \land \neg B) \lor B\\
+	  &\equiv& \neg A \lor (A \lor B) \land (\neg B \lor B)\\
+	  &\equiv& \neg A \lor (A \lor B) \land w\\
+	  &\equiv& \neg A \lor A \lor B\\
+	  &\equiv& w \lor B\\
+	  &\equiv& w		
 \end{aligned}\]
+
 
 | \(A\) | \(B\) | \(A \rightarrow B\) | \(A \land (A \rightarrow B)\) | \(F\) |
 |-------+-------+---------------------+-------------------------------+-------|
@@ -204,7 +209,7 @@ Beispiel: direkter Beweis der Gültigkeit einer Formel\\
 | w     | f     | f                   | f                             | w     |
 | w     | w     | w                   | w                             | w     |
 
-Normalformen
+*** Normalformen
 
 - /Literal:/ Aussagenvariable \(A\) ("positives Literal") oder negierte
   Aussagenvariable \(\neg A\) ("negatives Literal")
@@ -221,7 +226,7 @@ Normalformen
 - /Klausel:/ Disjunktion von Literalen, d.h. Formel der Art\\
   \(\bigvee_iL_i=L_1\lor L_2\lor\ldots\lor L_k\)
 
-Disjunktive Normalform (DNF) und Konjunktive Normalform (KNF)
+*** Disjunktive Normalform (DNF) und Konjunktive Normalform (KNF)
 
 - Disjunktive Normalform /DNF:/ Disjunktion von Konjunktionen
   (Monomen)\\
@@ -242,7 +247,7 @@ Disjunktive Normalform (DNF) und Konjunktive Normalform (KNF)
     \((F \lor G) \land (F \lor H)\) solange solche Teilformeln
     existieren
 
-Konstruktion kanonische DNF/KNF aus Wahrheitstafel
+*** Konstruktion kanonische DNF/KNF aus Wahrheitstafel
 
 - /Kanonische/ DNF bzw. KNF: jede Aussagenvariable kommt in jedem Monom
   bzw. jeder Klausel genau einmal vor (positiv oder negativ)
@@ -264,7 +269,7 @@ Konstruktion kanonische DNF/KNF aus Wahrheitstafel
 - Übungsbeispiel (KNF, aber nicht kanonisch)\\
   \(F=\neg B \land (A \lor \neg C)\)
 
-Beispiel: Konstruktion von KDNF und KKNF aus Wahrheitstafel
+*** Beispiel: Konstruktion von KDNF und KKNF aus Wahrheitstafel
 
 #+begin_center
 | A | B | C | F |
@@ -283,16 +288,16 @@ Beispiel: Konstruktion von KDNF und KKNF aus Wahrheitstafel
 - Werte für F=1 auslesen
   \[(\neg A \land \neg B \land \neg C) \lor (A \land \neg B \land \neg C) \lor (A \land \neg B \land C)\]
 
-- Werte für F=0 auslesen und Literale negieren \[\begin{aligned}
-                  &(A \lor B \lor \neg C) \land (A \lor \neg B \lor C) \land \\
-                  &(A \lor \neg B \lor \neg C) \land (\neg A \lor \neg B \lor C) \land (\neg A \lor \neg B \lor \neg C)
-              
+- Werte für F=0 auslesen und Literale negieren \\
+   \[\begin{aligned}
+  	&(A \lor B \lor \neg C) \land (A \lor \neg B \lor C) \land \\
+  	&(A \lor \neg B \lor \neg C) \land (\neg A \lor \neg B \lor C) \land (\neg A \lor \neg B \lor \neg C)			
   \end{aligned}\]
 
 - Minimierung der KKNF und KDNF durch Karnaugh-Veitch-Diagramm möglich
   (dann aber i.d.R. nicht mehr kanonisch)
 
-Beispiel: Karnaugh-Tafel
+*** Beispiel: Karnaugh-Tafel
 
 Karnaugh-Tafel für \(F=\neg B \land (A \lor \neg C)\)
 
@@ -304,7 +309,7 @@ Karnaugh-Tafel für \(F=\neg B \land (A \lor \neg C)\)
 
 #+end_center
 
-Abgeleitete Formeln:
+*** Abgeleitete Formeln:
 
 - Einsen zu Blöcken (Größe \(2^n\)) und die Variablen im Block
   weglassen, die sowohl positiv als auch negativ vertreten sind.
@@ -315,7 +320,7 @@ Abgeleitete Formeln:
   umkehren\\
   \((\neg B) \land (A \lor \neg C)\)
 
-Aussagenlogische Formeln in Java
+*** Aussagenlogische Formeln in Java
 
 - Datentyp =boolean=\\
   =p,q; //zulässige Werte: true, false=
@@ -340,7 +345,7 @@ Aussagenlogische Formeln in Java
 :CUSTOM_ID: mengenrelationen
 :END:
 
-Exkurs: Mengen
+*** Exkurs: Mengen
 
 - /Menge:/ Zusammenfassung unterschiedlicher Objekte (Elemente) zu einer
   Einheit
@@ -366,7 +371,7 @@ Exkurs: Mengen
   \(|M|=\) Anzahl verschiedener Elemente von \(M\); z.B.
   \(|\left\{a, b, a\right\}|=2\)
 
-Mengenverknüpfungen
+*** Mengenverknüpfungen
 
 - Durchschnitt:
   \(A \cap B = \left\{x \mid x \in A \land x \in B\right\}\)
@@ -387,7 +392,7 @@ Mengenverknüpfungen
   \(P(M)=\left\{\varnothing, \{a\}, \{b\}, \{c\}, \{a,b\}, \{a,c\}, \{b,c\}, \{a,b,c\}\right\}\)\\
   es gilt: \(|P(M)|=2^{|M|}\)
 
-Relationen Begriffsbestimmungen
+*** Relationen Begriffsbestimmungen
 
 - Kartesisches Produkt zweier Mengen \(A, B\)\\
   Menge aller geordneten Paare
@@ -408,7 +413,7 @@ Relationen Begriffsbestimmungen
   \(R \subseteq A \times B \Rightarrow R^{-1}\subseteq B \times A\)\\
   \(R^{-1}=(b,a) \mid a \in A, b \in B, (a,b) \in R\)
 
-Binäre Relationen /in einer/ Menge \(M: R \subset M \times M\)
+*** Binäre Relationen /in einer/ Menge \(M: R \subset M \times M\)
 
 - Bezeichnung: es gelte \(a,b,c \in M\)
 
@@ -431,7 +436,7 @@ Binäre Relationen /in einer/ Menge \(M: R \subset M \times M\)
   \(T=\{(a,b) \mid (a,b) \in R, \textrm{ oder: es gibt } c_0, c_1, \ldots, c_m \in M\)\\
   \(\textrm{mit } (a,c_0) \in R, (c_0, c_1) \in R, \ldots, (c_m,b) \in R\}\)
 
-Beispiel: Reflexivität
+*** Beispiel: Reflexivität
 
 - Reflexivität: Jedes Element der Relation steht mit sich selbst in
   Relation.
@@ -442,14 +447,28 @@ Beispiel: Reflexivität
     hat die gleiche Punktzahl wie er selbst.
 
   - Darstellung als Tabelle und Graph:\\
+  
+    #+ATTR_LATEX: :align |c|c|c|c|c|
+    |   | A | B | C | D |
+    |---+---+---+---+---|
+    | A | X |   |   |   |
+    | B |   | X |   |   |
+    | C |   |   | X |   |
+    | D |   |   |   | X |
 
-    ​|Y|Y|Y|Y|Y| & A & B & C & D\\
-    A & X & & &\\
-    B & & X & &\\
-    C & & & X &\\
-    D & & & & X\\
+    \begin{tikzpicture}
+		\node[state] (A) {$A$};
+		\node[state, right=1cm of A] (B) {$B$};
+		\node[state, below=1cm of A] (C) {$C$};
+		\node[state, right=1cm of C] (D) {$D$};
+					
+		\draw	(A) edge[loop above] (A);
+		\draw	(B) edge[loop above] (B);
+		\draw	(C) edge[loop above] (C);
+		\draw	(D) edge[loop above] (D);
+     \end{tikzpicture}
 
-Beispiel: Symmetrie
+*** Beispiel: Symmetrie
 
 - Symmetrie: zwei Elemente, die in Relation stehen, stehen umgekehrt
   auch in Relation.
@@ -461,13 +480,27 @@ Beispiel: Symmetrie
 
   - Darstellung als Tabelle und Graph:\\
 
-    ​|Y|Y|Y|Y|Y| & A & B & C & D\\
-    A & & & X &\\
-    B & & & & X\\
-    C & X & & &\\
-    D & & X & &\\
+    #+ATTR_LATEX: :align |c|c|c|c|c|
+    |   | A | B | C | D |
+    |---+---+---+---+---|
+    | A |   |   | X |   |
+    | B |   |   |   | X |
+    | C | X |   |   |   |
+    | D |   | X |   |   |
+    
+    \begin{tikzpicture}
+		\node[state] (A) {$A$};
+		\node[state, right=1cm of A] (B) {$B$};
+		\node[state, below=1cm of A] (C) {$C$};
+		\node[state, right=1cm of C] (D) {$D$};
+					
+		\draw	(A) edge[bend left] (C);
+		\draw	(B) edge[bend left] (D);
+		\draw	(C) edge[bend left] (A);
+		\draw	(D) edge[bend left] (B);
+    \end{tikzpicture}
 
-Beispiel: Transitivität
+*** Beispiel: Transitivität
 
 - Transitivität: Wenn ein Element mit einem anderen in Relation steht,
   und dieses wiederum mit einem dritten, so steht auch das erste mit dem
@@ -479,8 +512,18 @@ Beispiel: Transitivität
     von Diana. Dann ist Albert auch Vorfahr von Diana.
 
   - Darstellung als Graph (in Tabelle nicht gut zu sehen):\\
+    \begin{tikzpicture}
+	\node[state] (A) {$A$};
+	\node[state, right=1cm of A] (B) {$B$};
+	\node[state, below=1cm of A] (C) {$C$};
+	\node[state, right=1cm of C] (D) {$D$};
+					
+	\draw	(A) -- (B);
+	\draw	(B) -- (D);
+	\draw	(A) -- (D);
+    \end{tikzpicture}
 
-Äquivalenzrelationen
+*** Äquivalenzrelationen
 
 - Definition: \(R\) in \(M\) heißt Äquivalenzrelation in \(M\) gdw.
   \(R\) ist reflexiv, symmetrisch und transitiv
@@ -498,7 +541,7 @@ Beispiel: Transitivität
   \(a \equiv a'\ (\mathrm{mod}\ m), b \equiv b'\ (\mathrm{mod}\ m)\)\\
   \(a+b\equiv a'+b'\ (\mathrm{mod}\ m), a \cdot b \equiv a' \cdot b'\ (\mathrm{mod}\ m)\)
 
-Abbildungen
+*** Abbildungen
 
 - Sei \(R\) eine Relation zwischen den Mengen \(A,B\)
 
@@ -529,7 +572,7 @@ Abbildungen
 :CUSTOM_ID: boolesche-rechenregeln
 :END:
 
-Boolesche Algebra: Rechenregeln
+*** Boolesche Algebra: Rechenregeln
 
 /Abstrakte Definition/\\
 Boolesche Algebra \((B, +, \times, \kappa)\)
@@ -556,7 +599,7 @@ Boolesche Algebra \((B, +, \times, \kappa)\)
 
 - Komplementgesetze \(a + \kappa(a) = 1\), \(a \times \kappa(a) = 0\)
 
-Beispiele
+*** Beispiele
 
 - Potenzmenge; \(B=P(M)\)\\
   \(+:\cup\), \(\times:\cap\), \(\kappa(A):M\setminus A\),
@@ -569,7 +612,7 @@ Beispiele
 
 - Schaltfunktionen-Algebra
 
-Abgeleitete Rechenregeln für Boolesche Ausdrücke
+*** Abgeleitete Rechenregeln für Boolesche Ausdrücke
 
 - Dualitätsprinzip der Booleschen Algebra:\\
   zu jeder Rechenregel existiert eine zweite (duale) Rechenregel, die
@@ -577,7 +620,7 @@ Abgeleitete Rechenregeln für Boolesche Ausdrücke
 
 - Regeln\\
 
-  ̄̄ Idempotenz: \(a+a=a\) \(a\times a = a\)\\
+  Idempotenz: \(a+a=a\) \(a\times a = a\)\\
   Dominanzgesetz: \(a+1=1\) \(a\times 0 = 0\)\\
   Absorptionsgesetz: \(a+(a\times b) = a\) \(a \times (a + b) = a\)\\
   Gleichungsvereinfachung: aus \(b+a=c+a\) und
@@ -588,34 +631,35 @@ Abgeleitete Rechenregeln für Boolesche Ausdrücke
   De Morgansche Gesetze: \(\kappa(a+b) = \kappa(a) \times \kappa(b)\)\\
   \(\kappa(a\times b) = \kappa(a) + \kappa(b)\)
 
-Beweisbeispiele
+*** Beweisbeispiele
 
 \[\begin{aligned}
-            a+a&=a\\
-            a+a&=(a+a)\times 1\\
-               &=(a+a)\times (a+\kappa(a))\\
-               &=a+(a\times \kappa(a))\\
-               &=a+0\\
-               &=a
-        
-\end{aligned}\] \[\begin{aligned}
-            a+1&=1\\
-            a+1&=(a+1)\times 1\\
-            &=(a+1)\times (a+\kappa(a))\\
-            &=a+(1\times \kappa(a))\\
-            &=a+\kappa(a)\\
-            &=1
-        
-\end{aligned}\] \[\begin{aligned}
-            a+(a\times b)&=a\\
-            a+(a\times b)&=(a\times 1)+(a\times b)\\
-            &=a\times (1+b)\\
-            &=a\times 1\\
-            &=a\\
-        
+	a+a&=a\\
+	a+a&=(a+a)\times 1\\
+	   &=(a+a)\times (a+\kappa(a))\\
+	   &=a+(a\times \kappa(a))\\
+	   &=a+0\\
+	   &=a		
 \end{aligned}\]
 
-Beispiel: Schaltfunktionen-Algebra
+\[\begin{aligned}
+	a+1&=1\\
+	a+1&=(a+1)\times 1\\
+	&=(a+1)\times (a+\kappa(a))\\
+	&=a+(1\times \kappa(a))\\
+	&=a+\kappa(a)\\
+	&=1	
+\end{aligned}\]
+
+\[\begin{aligned}
+	a+(a\times b)&=a\\
+	a+(a\times b)&=(a\times 1)+(a\times b)\\
+	&=a\times (1+b)\\
+	&=a\times 1\\
+	&=a\\	
+\end{aligned}\]
+
+*** Beispiel: Schaltfunktionen-Algebra
 
 - Jeder n-stellige Boolesche Ausdruck stellt eine n-stellige
   Schaltfunktion \(f(x_1,\ldots,x_n)\), d.h.
@@ -634,7 +678,7 @@ Beispiel: Schaltfunktionen-Algebra
   (zeilenweise)\\
   \(\kappa : \kappa [f](x_1,\ldots,x_n)=1-f(x_1,\ldots,x_n)\)
 
-Gatter IEC 60617-12
+*** Gatter IEC 60617-12
 
 | AND  | \(Y=A\cdot B=AB\)                      | (0,0) node[and port] (gate) (gate.in 1) node[left](i1) A (gate.in 2) node[left](i2) B (gate.out) node[right](o) Y;  |
 | OR   | \(Y=A+B\)                              | (0,0) node[or port] (gate) (gate.in 1) node[left](i1) A (gate.in 2) node[left](i2) B (gate.out) node[right](o) Y;   |
@@ -644,36 +688,46 @@ Gatter IEC 60617-12
 | XOR  | \(Y=A\overline{B}+\overline{A}B\)      | (0,0) node[xor port] (gate) (gate.in 1) node[left](i1) A (gate.in 2) node[left](i2) B (gate.out) node[right](o) Y;  |
 | XNOR | \(Y=(\overline{A}+B)(A+\overline{B})\) | (0,0) node[xnor port] (gate) (gate.in 1) node[left](i1) A (gate.in 2) node[left](i2) B (gate.out) node[right](o) Y; |
 
-Beispiele
-\(y=((x_1\cdot x_2)\cdot(x_2+x_3))\cdot \overline{(x_2 + x_3)}\)\\
+*** Beispiele
+\begin{circuitikz}
+	\draw
+	(0,0) coordinate[label={[below]$x_1$}](x1)
+	(0.5,0) coordinate[label={[below]$x_2$}](x2)
+	(1,0) coordinate[label={[below]$x_3$}](x3)
+		
+	(0,6) coordinate(x1End)
+	(.5,6) coordinate(x2End)
+	(1,6) coordinate(x3End)
+		
+	(x1) -| (x1End)
+	(x2) -| (x2End)
+	(x3) -| (x3End)
+		
+	(3,1) node[and port] (Aandx1x2) {}
+	(3,3) node[or port] (Borx2x3) {}
+	(5,2) node[and port] (AandB) {}
+	(3,5) node[nor port] (nor) {}
+	(7,4) node[and port] (andAll) {}
+		
+	(Aandx1x2.in 1) to[short, -*] (x1 |- Aandx1x2.in 1)
+	(Aandx1x2.in 2) to[short, -*] (x2 |- Aandx1x2.in 2)
+		
+	(Borx2x3.in 1) to[short, -*] (x2 |- Borx2x3.in 1)
+	(Borx2x3.in 2) to[short, -*] (x3 |- Borx2x3.in 2)
+		
+	(nor.in 1) to[short, -*] (x2 |- nor.in 1)
+	(nor.in 2) to[short, -*] (x3 |- nor.in 2)
 
-(0,0) coordinate[label=[below]\(x_1\)](x1) (0.5,0)
-coordinate[label=[below]\(x_2\)](x2) (1,0)
-coordinate[label=[below]\(x_3\)](x3)
+	(Aandx1x2.out) -- (AandB.in 2)
+	(Borx2x3.out) -- (AandB.in 1)
+	(nor.out) -- (andAll.in 1)
+	(AandB.out) -- (andAll.in 2)
 
-(0,6) coordinate(x1End) (.5,6) coordinate(x2End) (1,6) coordinate(x3End)
+	(andAll.out) node[right](y) {y}
+	;
+\end{circuitikz}
 
-(x1) -| (x1End) (x2) -| (x2End) (x3) -| (x3End)
-
-(3,1) node[and port] (Aandx1x2) (3,3) node[or port] (Borx2x3) (5,2)
-node[and port] (AandB) (3,5) node[nor port] (nor) (7,4) node[and port]
-(andAll)
-
-(Aandx1x2.in 1) to[short, -*] (x1 |- Aandx1x2.in 1) (Aandx1x2.in 2)
-to[short, -*] (x2 |- Aandx1x2.in 2)
-
-(Borx2x3.in 1) to[short, -*] (x2 |- Borx2x3.in 1) (Borx2x3.in 2)
-to[short, -*] (x3 |- Borx2x3.in 2)
-
-(nor.in 1) to[short, -*] (x2 |- nor.in 1) (nor.in 2) to[short, -*] (x3
-​|- nor.in 2)
-
-(Aandx1x2.out) -- (AandB.in 2) (Borx2x3.out) -- (AandB.in 1) (nor.out)
--- (andAll.in 1) (AandB.out) -- (andAll.in 2)
-
-(andAll.out) node[right](y) y ;
-
-George Boole (, )
+*** George Boole (\textborn 1815, \textdied 1864)
 
 - englischer Mathematiker (Autodidakt), Logiker und Philosoph
 
@@ -690,3 +744,4 @@ George Boole (, )
 [[file:images/George_Boole_color.jpg]][fn:1]
 
 [fn:1] [[https://commons.wikimedia.org/wiki/File:George_Boole_color.jpg]]
+

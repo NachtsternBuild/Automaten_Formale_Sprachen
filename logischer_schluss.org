@@ -1,9 +1,4 @@
-* Logischer Schluss
-:PROPERTIES:
-:CUSTOM_ID: logischer-schluss
-:END:
-
-Logische Folgerungen (Beweise)
+*** Logische Folgerungen (Beweise)
 
 - logischer Schluss
 
@@ -29,7 +24,7 @@ Logische Folgerungen (Beweise)
     Ersetzungen gemäß Boolescher Rechenregeln) oder Schlussregeln
     (geeignete Tautologien)
 
-Schlussregeln
+*** Schlussregeln
 
 - \((A \land (A \rightarrow B)) \rightarrow B\) (Modus ponens)\\
   "wenn A gilt und aus A folgt B, dann gilt B"
@@ -48,7 +43,7 @@ Schlussregeln
 - \(A \rightarrow (A \lor B)\) (Ausdehnung)\\
   "ist A bereits gezeigt, dann gilt auch A oder B"
 
-Bemerkungen und Beispiel
+*** Bemerkungen und Beispiel
 
 - Zweckmäßige Tipps
 
@@ -67,7 +62,7 @@ Bemerkungen und Beispiel
   \(A, B \rightarrow C, (A \land B) \rightarrow (D \lor \neg C), B\);\\
   zeige: \(D\)
 
-Beweistypen (deduktiv)
+*** Beweistypen (deduktiv)
 
 1. _direkter Beweis_ \(A \rightarrow B\)
 
@@ -88,7 +83,7 @@ Beweistypen (deduktiv)
 6. Beweis _atomararer Aussagen:_\\
    zeige A durch \(w \rightarrow A\) bzw. \(\neg A \rightarrow f\)
 
-Erläuterungen
+*** Erläuterungen
 
 1. da \(A \rightarrow B\) nur falsch sein kann für \(I(A)=w\) und
    \(I(B)=f\), genügt es, \(A\) als wahr anzunehmen und \(I(B)=w\) zu
@@ -104,7 +99,7 @@ Erläuterungen
 
 6. \(A \equiv w \rightarrow A \equiv \neg A \rightarrow f\)
 
-Exkurs: Methode der vollständigen Induktion
+*** Exkurs: Methode der vollständigen Induktion
 
 - sei \(A(n), n=0,1,\ldots\) eine Folge von Aussagen, die zu beweisen
   sind
@@ -130,7 +125,7 @@ Exkurs: Methode der vollständigen Induktion
     zum Beweis von \(A(n)\) kann auf die Gültigkeit von \(A(m)\) für
     beliebige \(m<n\) zurückgegriffen werden
 
-Beispiele Beweistechniken seien \(a, b\) natürliche Zahlen
+*** Beispiele Beweistechniken seien \(a, b\) natürliche Zahlen
 
 - direkter Beweis: wenn \(a\) teilbar ist durch 6, dann ist \(a\) auch
   teilbar durch 3
